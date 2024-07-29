@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/code.dir/src/parser.cpp.o CMakeFiles/code.dir/src/memory.cpp.o CMakeFiles/code.dir/src/main.cpp.o -o code 
