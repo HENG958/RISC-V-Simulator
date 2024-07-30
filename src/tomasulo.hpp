@@ -33,11 +33,12 @@ class Tomasulo {
         int shamt;
         int current_pc;  // 对JAL与JALR指令，记录当前位置
         int clk;// Load与Store指令的时钟周期
+        int state;
         void Clear() {
             vj = vk = qj = qk = -1;
             dest = imm = shamt = -1;
             clk = 1;
-            current_pc = 0;
+            state = current_pc = 0;
         }
     };
     struct RegStatus {
@@ -51,6 +52,12 @@ class Tomasulo {
     int nxt_instr[ALU];          
     int ls;                   
     bool if_update = false;   // 标志是否需要更新加载/存储指令
+
+    void Clear() {
+            now_instr_num = nxt_instr_num = 0;
+            memset(now_instr, 0, sizeof(now_instr));
+            memset(nxt_instr, 0, sizeof(nxt_instr));
+        }
     };
     Memory memory;
     Alu alu;

@@ -205,6 +205,7 @@ void Tomasulo::Commit() {
                 rob.Clear();
                 rs.Clear();
                 ls.Clear();
+                now.Clear();  
                 memset(reg_stat, 0, sizeof(reg_stat));
                 memory.pc = it.addr + it.offset - 4;
             }
@@ -215,6 +216,7 @@ void Tomasulo::Commit() {
             rob.Clear();
             rs.Clear();
             ls.Clear();
+            now.Clear();
             memset(reg_stat, 0, sizeof(reg_stat));
             if (it.op == 3)
                 memory.pc = it.addr + it.offset - 4;
@@ -305,6 +307,7 @@ void Tomasulo::Reservation() {
         if (rs.busy[r] && rs[r].qj == -1 && rs[r].qk == -1) {
             // 将该条目添加到下一个执行周期的指令集中
             now.nxt_instr[now.nxt_instr_num++] = r;
+            rs[r].state = 1; // 标记该条目为已执行
         }
     }
 }
