@@ -17,6 +17,7 @@ class Tomasulo {
         int pc;
         int value;
         int offset;
+        int prediction;
         unsigned code = 0;
         void Clear() {
             op = Operation::LUI;
@@ -67,6 +68,7 @@ class Tomasulo {
     RegStatus reg_stat[32];
     Status now;
     int reg_in[32], reg_out[32];
+    int bit_status = 0;
     bool Issue();
     void Execute();
     void Reservation();

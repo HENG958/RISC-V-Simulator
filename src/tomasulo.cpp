@@ -116,6 +116,15 @@ bool Tomasulo::Issue() {
         reg_stat[instruction.rd].busy = true;
     }
     return true;
+
+    if (instruction.op >= 5 && instruction.op <= 10) {
+        if (bit_status >= 2) {
+            memory.pc += rob[b].offset - 4;
+            rob[b].prediction = 1;
+        } else {
+            rob[b].prediction = 0;
+        }
+    }
 }
 
 void Tomasulo::Execute() {
@@ -201,13 +210,21 @@ void Tomasulo::Commit() {
         if (it.op >= 5 && it.op <= 10) {
             // 处理branch指令
             //如果分支条件成立，清空ROB、保留站、重置寄存器状态，并跳转
-            if (it.value) {
+            if (it.value ^ it.prediction) {
                 rob.Clear();
                 rs.Clear();
                 ls.Clear();
                 now.Clear();  
                 memset(reg_stat, 0, sizeof(reg_stat));
-                memory.pc = it.addr + it.offset - 4;
+                if (it.value)
+                    memory.pc = it.addr + it.offset - 4;
+                else
+                    memory.pc = it.addr;
+
+                if (it.prediction && bit_status > 0)
+                    bit_status--;
+                else if (!it.prediction && bit_status < 3)
+                    bit_status++;
             }
         } else if (it.op >= 3 && it.op <= 4) {
             // 处理jump指令
