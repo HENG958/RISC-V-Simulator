@@ -1,6 +1,8 @@
 #include "tomasulo.hpp"
-#include "parser.hpp"
+
 #include <iostream>
+
+#include "parser.hpp"
 bool Tomasulo::Issue() {
     //解析指令
     unsigned code = memory.GetInstruction();
@@ -117,63 +119,29 @@ bool Tomasulo::Issue() {
 }
 
 void Tomasulo::Execute() {
-    //查找可执行的指令
-    int r;
-    for (r = 0; r < rs.Length(); r++)
-        if (rs.busy[r] && rs[r].qj == -1 && rs[r].qk == -1) break;
-    if (r == rs.Length()) return;
-
-    //获取指令相关信息
-    RSL &it = rs[r];
-    int b = it.dest;
-    int ret;
-
-    //执行
-    switch (it.op) {
-        case Operation::JAL:
-            ret = it.current_pc;
-            break;
-        case Operation::JALR:
-            ret = it.current_pc;
-            rob[b].pc = (it.vj + it.imm) & ~1;
-            break;
-        case Operation::LUI:
-            ret = it.imm;
-            break;
-        case Operation::AUIPC:
-            ret = it.imm + it.current_pc - 4;
-        default:
-            ret = alu.Work(it.op, it.vj, it.vk, it.imm, it.shamt);
+    for (int i = 0; i < now.now_instr_num; i++) {
+        RSL &it = rs[now.now_instr[i]];
+        int b = it.dest;
+        switch (it.op) {
+            case Operation::JAL:
+                rob[b].value = it.current_pc;
+                break;
+            case Operation::JALR:
+                rob[b].value = it.current_pc;
+                rob[b].pc = (it.vj + it.imm) & ~1;
+                break;
+            case Operation::LUI:
+                rob[b].value = it.imm;
+                break;
+            case Operation::AUIPC:
+                rob[b].value = it.imm + it.current_pc - 4;
+                break;
+            default:
+                rob[b].value = alu.Work(it.op, it.vj, it.vk, it.imm, it.shamt);
+        }
+        rs.Erase(now.now_instr[i]);
+        rob[b].ready = true;
     }
-
-    //移除
-    rs.Erase(r);
-
-    // 更新保留站与特殊缓冲区
-    for (int i = 0; i < rs.Length(); i++) {
-        if (rs[i].qj == b) {
-            rs[i].vj = ret;
-            rs[i].qj = -1;
-        }
-        if (rs[i].qk == b) {
-            rs[i].vk = ret;
-            rs[i].qk = -1;
-        }
-    }
-    for (int i = 0; i < ls.Length(); i++) {
-        if (ls[i].qj == b) {
-            ls[i].vj = ret;
-            ls[i].qj = -1;
-        }
-        if (ls[i].qk == b) {
-            ls[i].vk = ret;
-            ls[i].qk = -1;
-        }
-    }
-
-    //更新ROB
-    rob[b].value = ret;
-    rob[b].ready = true;
 }
 
 bool Tomasulo::LSBuffer() {
@@ -186,6 +154,10 @@ bool Tomasulo::LSBuffer() {
     // 检查指令操作数是否就绪
     if (it.qj != -1 || it.qk != -1) return false;
 
+    if (it.clk != 3) {
+        it.clk++;
+        return false;
+    }
     //处理load
     if (it.op >= 11 && it.op <= 15) {
         // load
@@ -194,6 +166,8 @@ bool Tomasulo::LSBuffer() {
         rob[b].value = memory.Load(it.op, rob[b].addr);
         rob[b].ready = true;
         ls.Pop();
+        now.ls = b;
+        now.if_update = true;
         return true;
     } 
     else {
@@ -201,8 +175,7 @@ bool Tomasulo::LSBuffer() {
         if (rob.GetFrontInd() == it.dest) {
             int b = it.dest;
             rob[b].addr = it.vj + it.imm;
-            rob[b].value = it.vk;
-            memory.Store(it.op, rob[b].addr, rob[b].value);
+            memory.Store(it.op, rob[b].addr, it.vk);
             rob[b].ready = true;
             ls.Pop();
             return true;
@@ -231,6 +204,7 @@ void Tomasulo::Commit() {
             if (it.value) {
                 rob.Clear();
                 rs.Clear();
+                ls.Clear();
                 memset(reg_stat, 0, sizeof(reg_stat));
                 memory.pc = it.addr + it.offset - 4;
             }
@@ -240,6 +214,7 @@ void Tomasulo::Commit() {
             reg_out[it.dest] = it.value;
             rob.Clear();
             rs.Clear();
+            ls.Clear();
             memset(reg_stat, 0, sizeof(reg_stat));
             if (it.op == 3)
                 memory.pc = it.addr + it.offset - 4;
@@ -258,17 +233,98 @@ void Tomasulo::Commit() {
 
 void Tomasulo::Update() {
     for (int i = 0; i < 32; i++) reg_in[i] = reg_out[i];
+
+    // 遍历当前执行的指令
+    for (int j = 0; j < now.now_instr_num; j++) {
+        int b = rs[now.now_instr[j]].dest; // 获取指令的目标寄存器
+        // 更新保留站中的值
+        for (int i = 0; i < rs.Length(); i++) {
+            if (rs[i].qj == b) {
+                rs[i].vj = rob[b].value; // 更新操作数 vj
+                rs[i].qj = -1; // 标记操作数 vj 就绪
+            }
+            if (rs[i].qk == b) {
+                rs[i].vk = rob[b].value; // 更新操作数 vk
+                rs[i].qk = -1; // 标记操作数 vk 就绪
+            }
+        }
+        // 更新加载/存储缓冲区中的值
+        for (int i = 0; i <= ls.Length(); i++) {
+            if (ls[i].qj == b) {
+                ls[i].vj = rob[b].value; // 更新操作数 vj
+                ls[i].qj = -1; // 标记操作数 vj 就绪
+            }
+            if (ls[i].qk == b) {
+                ls[i].vk = rob[b].value; // 更新操作数 vk
+                ls[i].qk = -1; // 标记操作数 vk 就绪
+            }
+        }
+    }
+
+    // 如果需要更新加载/存储指令
+    if (now.if_update) {
+        int b = now.ls; // 获取当前加载/存储指令的目标寄存器
+        // 更新保留站中的值
+        for (int i = 0; i < rs.Length(); i++) {
+            if (rs[i].qj == b) {
+                rs[i].vj = rob[b].value; // 更新操作数 vj
+                rs[i].qj = -1; // 标记操作数 vj 就绪
+            }
+            if (rs[i].qk == b) {
+                rs[i].vk = rob[b].value; // 更新操作数 vk
+                rs[i].qk = -1; // 标记操作数 vk 就绪
+            }
+        }
+        // 更新加载/存储缓冲区中的值
+        for (int i = 0; i <= ls.Length(); i++) {
+            if (ls[i].qj == b) {
+                ls[i].vj = rob[b].value; // 更新操作数 vj
+                ls[i].qj = -1; // 标记操作数 vj 就绪
+            }
+            if (ls[i].qk == b) {
+                ls[i].vk = rob[b].value; // 更新操作数 vk
+                ls[i].qk = -1; // 标记操作数 vk 就绪
+            }
+        }
+    }
+
+    // 重置加载/存储更新标志
+    now.if_update = false;
+
+    // 更新当前执行的指令集
+    for (int i = 0; i < now.nxt_instr_num; i++) now.now_instr[i] = now.nxt_instr[i];
+    now.now_instr_num = now.nxt_instr_num;
+}
+
+void Tomasulo::Reservation() {
+    now.nxt_instr_num = 0; // 初始化下一个执行周期的指令数量为 0
+
+    // 遍历保留站中的所有条目，直到找到足够多的可执行指令
+    for (int r = 0; r < rs.Length() && now.nxt_instr_num < ALU; r++) {
+        // 检查保留站条目是否忙碌且操作数 qj 和 qk 都已经就绪
+        if (rs.busy[r] && rs[r].qj == -1 && rs[r].qk == -1) {
+            // 将该条目添加到下一个执行周期的指令集中
+            now.nxt_instr[now.nxt_instr_num++] = r;
+        }
+    }
 }
 
 void Tomasulo::Run() {
-    int cnt = 0;
+    int clk = 0;
     memory.Read();
+    ls.Clear();
+    rs.Clear();
+    rob.Clear();
+    memset(reg_stat, 0, sizeof(reg_stat));
     while (true) {
-        cnt++;
+        clk++;
         Issue();
         ResetRes();
 
         Execute();
+        ResetRes();
+
+        Reservation();
         ResetRes();
 
         LSBuffer();
