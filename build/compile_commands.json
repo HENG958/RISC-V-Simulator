@@ -1,27 +1,27 @@
 [
 {
   "directory": "/home/lzh/CPU/build",
-  "command": "/usr/bin/c++   -g -std=c++2a -g -std=gnu++20 -o CMakeFiles/code.dir/src/parser.cpp.o -c /home/lzh/CPU/src/parser.cpp",
+  "command": "/usr/bin/c++   -g -std=c++2a -O2 -std=gnu++20 -o CMakeFiles/code.dir/src/parser.cpp.o -c /home/lzh/CPU/src/parser.cpp",
   "file": "/home/lzh/CPU/src/parser.cpp"
 },
 {
   "directory": "/home/lzh/CPU/build",
-  "command": "/usr/bin/c++   -g -std=c++2a -g -std=gnu++20 -o CMakeFiles/code.dir/src/alu.cpp.o -c /home/lzh/CPU/src/alu.cpp",
+  "command": "/usr/bin/c++   -g -std=c++2a -O2 -std=gnu++20 -o CMakeFiles/code.dir/src/alu.cpp.o -c /home/lzh/CPU/src/alu.cpp",
   "file": "/home/lzh/CPU/src/alu.cpp"
 },
 {
   "directory": "/home/lzh/CPU/build",
-  "command": "/usr/bin/c++   -g -std=c++2a -g -std=gnu++20 -o CMakeFiles/code.dir/src/memory.cpp.o -c /home/lzh/CPU/src/memory.cpp",
+  "command": "/usr/bin/c++   -g -std=c++2a -O2 -std=gnu++20 -o CMakeFiles/code.dir/src/memory.cpp.o -c /home/lzh/CPU/src/memory.cpp",
   "file": "/home/lzh/CPU/src/memory.cpp"
 },
 {
   "directory": "/home/lzh/CPU/build",
-  "command": "/usr/bin/c++   -g -std=c++2a -g -std=gnu++20 -o CMakeFiles/code.dir/src/tomasulo.cpp.o -c /home/lzh/CPU/src/tomasulo.cpp",
+  "command": "/usr/bin/c++   -g -std=c++2a -O2 -std=gnu++20 -o CMakeFiles/code.dir/src/tomasulo.cpp.o -c /home/lzh/CPU/src/tomasulo.cpp",
   "file": "/home/lzh/CPU/src/tomasulo.cpp"
 },
 {
   "directory": "/home/lzh/CPU/build",
-  "command": "/usr/bin/c++   -g -std=c++2a -g -std=gnu++20 -o CMakeFiles/code.dir/src/main.cpp.o -c /home/lzh/CPU/src/main.cpp",
+  "command": "/usr/bin/c++   -g -std=c++2a -O2 -std=gnu++20 -o CMakeFiles/code.dir/src/main.cpp.o -c /home/lzh/CPU/src/main.cpp",
   "file": "/home/lzh/CPU/src/main.cpp"
 }
 ]
