@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "CPU",
+					"name" : "Bookstore",
 					"targetIndexes" : 
 					[
 						0
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "code::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-code-Debug-8edf97939be580ec7958.json",
+					"jsonFile" : "target-code-Debug-1974f1039c5f402bdb99.json",
 					"name" : "code",
 					"projectIndex" : 0
 				}

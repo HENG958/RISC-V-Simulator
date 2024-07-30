@@ -349,5 +349,7 @@ CMakeFiles/code.dir/src/main.cpp.o: /home/lzh/CPU/src/main.cpp \
  /usr/include/c++/11/coroutine /usr/include/c++/11/latch \
  /usr/include/c++/11/ranges /usr/include/c++/11/span \
  /usr/include/c++/11/source_location /usr/include/c++/11/syncstream \
- /usr/include/c++/11/version /home/lzh/CPU/src/memory.hpp \
- /home/lzh/CPU/src/operation.hpp /home/lzh/CPU/src/parser.hpp
+ /usr/include/c++/11/version /home/lzh/CPU/src/tomasulo.hpp \
+ /home/lzh/CPU/src/alu.hpp /home/lzh/CPU/src/operation.hpp \
+ /home/lzh/CPU/src/array.hpp /home/lzh/CPU/src/memory.hpp \
+ /home/lzh/CPU/src/queue.hpp

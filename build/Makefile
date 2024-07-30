@@ -129,6 +129,30 @@ code/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/build
 .PHONY : code/fast
 
+src/alu.o: src/alu.cpp.o
+.PHONY : src/alu.o
+
+# target to build an object file
+src/alu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/alu.cpp.o
+.PHONY : src/alu.cpp.o
+
+src/alu.i: src/alu.cpp.i
+.PHONY : src/alu.i
+
+# target to preprocess a source file
+src/alu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/alu.cpp.i
+.PHONY : src/alu.cpp.i
+
+src/alu.s: src/alu.cpp.s
+.PHONY : src/alu.s
+
+# target to generate assembly for a file
+src/alu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/alu.cpp.s
+.PHONY : src/alu.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -201,6 +225,30 @@ src/parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/parser.cpp.s
 .PHONY : src/parser.cpp.s
 
+src/tomasulo.o: src/tomasulo.cpp.o
+.PHONY : src/tomasulo.o
+
+# target to build an object file
+src/tomasulo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/tomasulo.cpp.o
+.PHONY : src/tomasulo.cpp.o
+
+src/tomasulo.i: src/tomasulo.cpp.i
+.PHONY : src/tomasulo.i
+
+# target to preprocess a source file
+src/tomasulo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/tomasulo.cpp.i
+.PHONY : src/tomasulo.cpp.i
+
+src/tomasulo.s: src/tomasulo.cpp.s
+.PHONY : src/tomasulo.s
+
+# target to generate assembly for a file
+src/tomasulo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/tomasulo.cpp.s
+.PHONY : src/tomasulo.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,6 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... code"
+	@echo "... src/alu.o"
+	@echo "... src/alu.i"
+	@echo "... src/alu.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -219,6 +270,9 @@ help:
 	@echo "... src/parser.o"
 	@echo "... src/parser.i"
 	@echo "... src/parser.s"
+	@echo "... src/tomasulo.o"
+	@echo "... src/tomasulo.i"
+	@echo "... src/tomasulo.s"
 .PHONY : help
 
 

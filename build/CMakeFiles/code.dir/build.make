@@ -83,10 +83,24 @@ CMakeFiles/code.dir/src/parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/parser.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lzh/CPU/src/parser.cpp -o CMakeFiles/code.dir/src/parser.cpp.s
 
+CMakeFiles/code.dir/src/alu.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/src/alu.cpp.o: ../src/alu.cpp
+CMakeFiles/code.dir/src/alu.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/code.dir/src/alu.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/alu.cpp.o -MF CMakeFiles/code.dir/src/alu.cpp.o.d -o CMakeFiles/code.dir/src/alu.cpp.o -c /home/lzh/CPU/src/alu.cpp
+
+CMakeFiles/code.dir/src/alu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/src/alu.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lzh/CPU/src/alu.cpp > CMakeFiles/code.dir/src/alu.cpp.i
+
+CMakeFiles/code.dir/src/alu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/alu.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lzh/CPU/src/alu.cpp -o CMakeFiles/code.dir/src/alu.cpp.s
+
 CMakeFiles/code.dir/src/memory.cpp.o: CMakeFiles/code.dir/flags.make
 CMakeFiles/code.dir/src/memory.cpp.o: ../src/memory.cpp
 CMakeFiles/code.dir/src/memory.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/code.dir/src/memory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/code.dir/src/memory.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/memory.cpp.o -MF CMakeFiles/code.dir/src/memory.cpp.o.d -o CMakeFiles/code.dir/src/memory.cpp.o -c /home/lzh/CPU/src/memory.cpp
 
 CMakeFiles/code.dir/src/memory.cpp.i: cmake_force
@@ -97,10 +111,24 @@ CMakeFiles/code.dir/src/memory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/memory.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lzh/CPU/src/memory.cpp -o CMakeFiles/code.dir/src/memory.cpp.s
 
+CMakeFiles/code.dir/src/tomasulo.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/src/tomasulo.cpp.o: ../src/tomasulo.cpp
+CMakeFiles/code.dir/src/tomasulo.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/code.dir/src/tomasulo.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/tomasulo.cpp.o -MF CMakeFiles/code.dir/src/tomasulo.cpp.o.d -o CMakeFiles/code.dir/src/tomasulo.cpp.o -c /home/lzh/CPU/src/tomasulo.cpp
+
+CMakeFiles/code.dir/src/tomasulo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/src/tomasulo.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lzh/CPU/src/tomasulo.cpp > CMakeFiles/code.dir/src/tomasulo.cpp.i
+
+CMakeFiles/code.dir/src/tomasulo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/tomasulo.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lzh/CPU/src/tomasulo.cpp -o CMakeFiles/code.dir/src/tomasulo.cpp.s
+
 CMakeFiles/code.dir/src/main.cpp.o: CMakeFiles/code.dir/flags.make
 CMakeFiles/code.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/code.dir/src/main.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/code.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/code.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/main.cpp.o -MF CMakeFiles/code.dir/src/main.cpp.o.d -o CMakeFiles/code.dir/src/main.cpp.o -c /home/lzh/CPU/src/main.cpp
 
 CMakeFiles/code.dir/src/main.cpp.i: cmake_force
@@ -114,18 +142,22 @@ CMakeFiles/code.dir/src/main.cpp.s: cmake_force
 # Object files for target code
 code_OBJECTS = \
 "CMakeFiles/code.dir/src/parser.cpp.o" \
+"CMakeFiles/code.dir/src/alu.cpp.o" \
 "CMakeFiles/code.dir/src/memory.cpp.o" \
+"CMakeFiles/code.dir/src/tomasulo.cpp.o" \
 "CMakeFiles/code.dir/src/main.cpp.o"
 
 # External object files for target code
 code_EXTERNAL_OBJECTS =
 
 code: CMakeFiles/code.dir/src/parser.cpp.o
+code: CMakeFiles/code.dir/src/alu.cpp.o
 code: CMakeFiles/code.dir/src/memory.cpp.o
+code: CMakeFiles/code.dir/src/tomasulo.cpp.o
 code: CMakeFiles/code.dir/src/main.cpp.o
 code: CMakeFiles/code.dir/build.make
 code: CMakeFiles/code.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable code"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lzh/CPU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable code"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/code.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

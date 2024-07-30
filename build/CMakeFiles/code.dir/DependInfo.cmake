@@ -8,9 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/lzh/CPU/src/alu.cpp" "CMakeFiles/code.dir/src/alu.cpp.o" "gcc" "CMakeFiles/code.dir/src/alu.cpp.o.d"
   "/home/lzh/CPU/src/main.cpp" "CMakeFiles/code.dir/src/main.cpp.o" "gcc" "CMakeFiles/code.dir/src/main.cpp.o.d"
   "/home/lzh/CPU/src/memory.cpp" "CMakeFiles/code.dir/src/memory.cpp.o" "gcc" "CMakeFiles/code.dir/src/memory.cpp.o.d"
   "/home/lzh/CPU/src/parser.cpp" "CMakeFiles/code.dir/src/parser.cpp.o" "gcc" "CMakeFiles/code.dir/src/parser.cpp.o.d"
+  "/home/lzh/CPU/src/tomasulo.cpp" "CMakeFiles/code.dir/src/tomasulo.cpp.o" "gcc" "CMakeFiles/code.dir/src/tomasulo.cpp.o.d"
   )
 
 # Targets to which this target links.

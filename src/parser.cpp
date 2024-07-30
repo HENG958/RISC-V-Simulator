@@ -3,7 +3,6 @@ int GetImm(unsigned int bin_code, Operation::ImmType imm_type) {
     int ret = 0;
     int op = bin_code >> 31;
     if (imm_type == Operation::R) {
-        // none
     } else if (imm_type == Operation::I) {
         if (op) {
             ret = 1;
